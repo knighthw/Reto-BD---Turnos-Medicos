@@ -33,8 +33,3 @@ Thumbs.db
 
 # Archivos de bloqueo temporales de LibreOffice/OpenOffice
 .~lock.*#
-
-# ==============================================================
-# Notas internas del proyecto (no forman parte del entregable)
-# ==============================================================
-CONTEXTO_PARA_CLAUDE_CODE.md
