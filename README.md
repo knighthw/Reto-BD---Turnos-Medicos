@@ -112,22 +112,22 @@ Sobre estas tablas se definen 3 **Duality Views**:
 
 ## 🚀 Reconstruir el proyecto paso a paso
 
-> **Credenciales:** recibirás por separado el enlace de acceso a **Database Actions**, así como el usuario y la contraseña del esquema `TURNOS_MEDICOS`. No están en este repositorio público.
+> **Credenciales:** el profesor recibirá por separado el enlace de acceso a **Database Actions**, así como el usuario y la contraseña del esquema `TURNOS_MEDICOS`. No están en este repositorio público.
 
 ### 1. Conectarse a la base de datos
 
-No necesita descargar ningún wallet ni instalar software adicional: la conexión se hace directamente desde el navegador con **Database Actions**.
+El profesor no necesita descargar ningún wallet ni instalar software adicional: la conexión se hace directamente desde el navegador con **Database Actions**.
 
-1. Abra el enlace de **Database Actions** que se le compartió (en el informe).
-2. Inicia sesión con el usuario `TURNOS_MEDICOS` y la contraseña que recibiste.
-3. En el panel de accesos rápidos, abre la tarjeta **SQL** (bajo *Development*). Ahí es donde vas a pegar y ejecutar los scripts de la carpeta `sql/`.
+1. Debe abrir el enlace de **Database Actions** que se le compartió (en el informe).
+2. Debe iniciar sesión con el usuario `TURNOS_MEDICOS` y la contraseña recibida.
+3. En el panel de accesos rápidos, debe abrir la tarjeta **SQL** (bajo *Development*). Ahí se pegan y ejecutan los scripts de la carpeta `sql/`.
 
 ### 2. Ejecutar el script maestro
 
-1. Antes de ejecutar, abrir `sql/00_setup_completo.sql` y, en la **Sección 4**, reemplazar el placeholder `'TU_API_KEY_DE_GEMINI_AQUI'` por tu **API key de Google Gemini** (ver [nota de Select AI](#-nota-sobre-select-ai)).
-2. Ejecutar el script **completo, de arriba a abajo**, sobre un esquema limpio. Reconstruye en orden: tablas → datos → Duality Views → habilitación REST → Select AI → endpoint del asistente IA.
+1. Antes de ejecutar, debe abrir `sql/00_setup_completo.sql` y, en la **Sección 4**, reemplazar el placeholder `'TU_API_KEY_DE_GEMINI_AQUI'` por una **API key de Google Gemini** propia (ver [nota de Select AI](#-nota-sobre-select-ai)).
+2. Debe ejecutar el script **completo, de arriba a abajo**, sobre un esquema limpio. Reconstruye en orden: tablas → datos → Duality Views → habilitación REST → Select AI → endpoint del asistente IA.
 
-> El catálogo `sql/05_consultas_optimizadas.sql` es **analítico** (planes de ejecución) y se ejecuta aparte, sentencia por sentencia, si se desea reproducir la tabla comparativa del informe D5.
+> El catálogo `sql/05_consultas_optimizadas.sql` es **analítico** (planes de ejecución) y se ejecuta aparte, sentencia por sentencia, solo si se desea reproducir la tabla comparativa del informe D5.
 
 ### 3. Probar los endpoints REST
 
@@ -139,7 +139,9 @@ https://<HOST>/ords/turnos_medicos/pacientes-turnos/
 https://<HOST>/ords/turnos_medicos/especialidades-medicos/
 ```
 
-Prueba rápida desde la terminal (reemplaza `<HOST>`):
+La forma más simple de probarlos es abrir el dashboard del frontend con **Live Server** (ver el paso 5 más abajo): si carga los datos de médicos, pacientes y especialidades, los tres endpoints están funcionando correctamente.
+
+También pueden verificarse directamente desde la terminal, reemplazando `<HOST>`:
 
 ```bash
 curl https://<HOST>/ords/turnos_medicos/medicos-turnos/
@@ -147,21 +149,21 @@ curl https://<HOST>/ords/turnos_medicos/medicos-turnos/
 
 ### 4. Importar y usar la colección de Postman
 
-1. Abrir **Postman** → *Import* → seleccionar `api/postman_coleccion_crud.json` (o `postman_coleccion_con_ejemplos.json` para ver respuestas de ejemplo).
+1. Debe abrir **Postman** → *Import* → seleccionar `api/postman_coleccion_crud.json` (o `postman_coleccion_con_ejemplos.json` para ver respuestas de ejemplo).
 2. La colección incluye, por cada recurso, las operaciones **GET (listar)**, **GET por ID**, **POST**, **PUT** y **DELETE**.
-3. Si las URLs usan un host distinto al tuyo, ajústalas o define una variable de entorno con tu `<HOST>`.
+3. Si las URLs usan un host distinto al de su instancia, debe ajustarlas o definir una variable de entorno con el `<HOST>` correcto.
 
 ### 5. Abrir la interfaz
 
 El dashboard está en `frontend/panel_turnos_medicos.html` y consume los endpoints con `fetch()`.
 
-> ⚠️ **No lo abras haciendo doble clic sobre el archivo** (eso lo carga como `file://` y el navegador bloquea las peticiones a los endpoints por CORS). Tiene que servirse desde una URL `http://localhost...`. Cualquiera de estas opciones funciona; usa la que ya tengas disponible:
+> ⚠️ **No debe abrirse haciendo doble clic sobre el archivo** (eso lo carga como `file://` y el navegador bloquea las peticiones a los endpoints por CORS). Tiene que servirse desde una URL `http://localhost...`. El profesor puede usar cualquiera de estas opciones, según lo que tenga disponible:
 
-- **Con VS Code:** instala la extensión **Live Server**, haz clic derecho sobre `panel_turnos_medicos.html` → *"Open with Live Server"* (o el botón *"Go Live"* de la barra inferior). El proyecto ya trae configurado el puerto 5501 en `.vscode/settings.json`.
-- **Sin VS Code, con Python instalado:** abre una terminal en la carpeta `frontend/` y ejecuta `python3 -m http.server 5501`. Luego visita `http://localhost:5501/panel_turnos_medicos.html`.
-- **Sin VS Code, con Node.js instalado:** desde la carpeta `frontend/` ejecuta `npx serve -l 5501`. Luego visita la URL que te indique la terminal.
+- **Con VS Code (recomendado):** debe instalar la extensión **Live Server**, hacer clic derecho sobre `panel_turnos_medicos.html` → *"Open with Live Server"* (o el botón *"Go Live"* de la barra inferior). El proyecto ya trae configurado el puerto 5501 en `.vscode/settings.json`.
+- **Sin VS Code, con Python instalado:** debe abrir una terminal en la carpeta `frontend/` y ejecutar `python3 -m http.server 5501`. Luego visitar `http://localhost:5501/panel_turnos_medicos.html`.
+- **Sin VS Code, con Node.js instalado:** desde la carpeta `frontend/` debe ejecutar `npx serve -l 5501`. Luego visitar la URL que indique la terminal.
 
-Si la instancia que usas tiene un host distinto al configurado, edita la constante `BASE` cerca de la parte superior del `<script>` dentro del HTML y reemplázala por tu propio host.
+Si la instancia usada tiene un host distinto al configurado, debe editarse la constante `BASE` cerca de la parte superior del `<script>` dentro del HTML y reemplazarla por el host correspondiente.
 
 ---
 
@@ -184,12 +186,11 @@ Para GET por ID añade el identificador: `medicos-turnos/1`.
 
 El asistente de IA usa **Oracle Select AI** (`DBMS_CLOUD_AI`) con el provider **Google Gemini** (`gemini-flash-latest`).
 
-- Requiere una **API key propia** del provider (Gemini u OpenAI). Consíguela en el panel del proveedor.
-
+- Requiere una **API key propia** del provider (Gemini u OpenAI), que debe obtenerse en el panel del proveedor.
 
 ---
 
 ## 🔐 Seguridad
 
-- Las **credenciales de conexión** al esquema no se publican aquí; se comparten por separado (El informe).
+- Las **credenciales de conexión** al esquema no se publican aquí; se comparten por separado (el informe).
 
