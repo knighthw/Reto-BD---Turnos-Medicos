@@ -1,0 +1,40 @@
+# ==============================================================
+# Seguridad — NUNCA subir credenciales ni wallets
+# ==============================================================
+# Wallet de Oracle Autonomous Database
+Wallet_*.zip
+wallet*.zip
+*.sso
+cwallet.sso
+ewallet.p12
+ewallet.pem
+tnsnames.ora
+sqlnet.ora
+ojdbc.properties
+keystore.jks
+truststore.jks
+
+# API keys / secretos
+*.key
+*.pem
+.env
+.env.*
+secrets.*
+**/apikey*
+**/api_key*
+
+# ==============================================================
+# Sistema operativo / editores
+# ==============================================================
+.DS_Store
+Thumbs.db
+*~
+.*.swp
+
+# Archivos de bloqueo temporales de LibreOffice/OpenOffice
+.~lock.*#
+
+# ==============================================================
+# Notas internas del proyecto (no forman parte del entregable)
+# ==============================================================
+CONTEXTO_PARA_CLAUDE_CODE.md

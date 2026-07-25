@@ -1,0 +1,1265 @@
+{
+  "info": {
+    "_postman_id": "ca14e76d-5931-4e31-b1fb-bfedb819cce2",
+    "name": "Turnos Médicos - Duality Views (CRUD)",
+    "description": "Colección de pruebas CRUD (GET, POST, PUT, DELETE) sobre las 3 JSON Relational Duality Views del proyecto Plataforma de Turnos Médicos, expuestas vía ORDS. Entregable D6/D8 - Diseño y Gestión de BDD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+    "_exporter_id": "53924311",
+    "_collection_link": "https://go.postman.co/collection/53924311-ca14e76d-5931-4e31-b1fb-bfedb819cce2?source=collection_link"
+  },
+  "item": [
+    {
+      "name": "Médicos (medico_turnos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Médicos (medico_turnos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": [
+            {
+              "name": "1. GET - Listar todos",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/medicos-turnos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "medicos-turnos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 19:40:20 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"/FLSslPDIFnUwp58y99Ex8XjIafO4dQFnPYxS/3MbgDLeDvGDeoIFTaEIVbHtjg+wk4dsYRGfydKY6kAbjJfag==\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"items\": [\n        {\n            \"_id\": 23,\n            \"nombre\": \"Dr. Miguel Andrade\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 27,\n                    \"fecha\": \"2026-07-16T00:00:00\",\n                    \"hora\": \"14:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 23,\n                            \"nombre\": \"Diego Salazar\",\n                            \"cedula\": \"0910111213\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 28,\n                    \"fecha\": \"2026-07-15T00:00:00\",\n                    \"hora\": \"15:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 24,\n                            \"nombre\": \"Patricia Núñez\",\n                            \"cedula\": \"1011121314\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 39,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"16:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 25,\n                            \"nombre\": \"Fernando Cabrera\",\n                            \"cedula\": \"1112131415\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"A1CEDD39A5538AA0F8BB2CC8C8FCA4AE\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/23\"\n                }\n            ]\n        },\n        {\n            \"_id\": 24,\n            \"nombre\": \"Dra. Carla Espinoza\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 29,\n                    \"fecha\": \"2026-07-14T00:00:00\",\n                    \"hora\": \"16:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 25,\n                            \"nombre\": \"Fernando Cabrera\",\n                            \"cedula\": \"1112131415\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 30,\n                    \"fecha\": \"2026-07-13T00:00:00\",\n                    \"hora\": \"08:45\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 26,\n                            \"nombre\": \"Gabriela Mora\",\n                            \"cedula\": \"1213141516\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"76417474158DCFCA126F646EB2D23C76\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/24\"\n                }\n            ]\n        },\n        {\n            \"_id\": 25,\n            \"nombre\": \"Dr. Jorge Ruiz\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 31,\n                    \"fecha\": \"2026-07-09T00:00:00\",\n                    \"hora\": \"10:15\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 1,\n                            \"nombre\": \"Juan Morales\",\n                            \"cedula\": \"0102030405\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 32,\n                    \"fecha\": \"2026-07-01T00:00:00\",\n                    \"hora\": \"11:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 2,\n                            \"nombre\": \"María López\",\n                            \"cedula\": \"0203040506\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"F15FD2171C98DC9662B9201D657AF6AE\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/25\"\n                }\n            ]\n        },\n        {\n            \"_id\": 26,\n            \"nombre\": \"Dra. Elena Vaca\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 33,\n                    \"fecha\": \"2026-06-26T00:00:00\",\n                    \"hora\": \"13:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 3,\n                            \"nombre\": \"Pedro Sánchez\",\n                            \"cedula\": \"0304050607\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 34,\n                    \"fecha\": \"2026-06-21T00:00:00\",\n                    \"hora\": \"14:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 4,\n                            \"nombre\": \"Lucía Fernández\",\n                            \"cedula\": \"0405060708\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"D7C1FB4A0828F0C7D0F857B5D2ACCC29\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/26\"\n                }\n            ]\n        },\n        {\n            \"_id\": 1,\n            \"nombre\": \"Dr. Carlos Pérez\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 1,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"08:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 1,\n                            \"nombre\": \"Juan Morales\",\n                            \"cedula\": \"0102030405\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 2,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"09:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 2,\n                            \"nombre\": \"María López\",\n                            \"cedula\": \"0203040506\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 3,\n                    \"fecha\": \"2026-07-06T00:00:00\",\n                    \"hora\": \"10:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 3,\n                            \"nombre\": \"Pedro Sánchez\",\n                            \"cedula\": \"0304050607\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 21,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"08:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 4,\n                            \"nombre\": \"Lucía Fernández\",\n                            \"cedula\": \"0405060708\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 22,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"09:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 5,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 35,\n                    \"fecha\": \"2026-07-19T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 6,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 36,\n                    \"fecha\": \"2026-07-19T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 6,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"AC85B50F880FCD56DBB17C0154BC94DD\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/1\"\n                }\n            ]\n        },\n        {\n            \"_id\": 2,\n            \"nombre\": \"Dra. Ana Torres\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 4,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"11:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 4,\n                            \"nombre\": \"Lucía Fernández\",\n                            \"cedula\": \"0405060708\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 5,\n                    \"fecha\": \"2026-07-05T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 5,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 23,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"10:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 6,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 24,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"11:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 7,\n                            \"nombre\": \"Valeria Cordero\",\n                            \"cedula\": \"0607080910\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 37,\n                    \"fecha\": \"2026-07-18T00:00:00\",\n                    \"hora\": \"13:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 21,\n                            \"nombre\": \"Roberto Jiménez\",\n                            \"cedula\": \"0708091011\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"07682194A3472935539C2C0D1C4B32B0\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/2\"\n                }\n            ]\n        },\n        {\n            \"_id\": 3,\n            \"nombre\": \"Dr. Luis Ramírez\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 6,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"13:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 6,\n                            \"nombre\": \"Andrés Castillo\",\n                            \"cedula\": \"0506070809\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 7,\n                    \"fecha\": \"2026-06-28T00:00:00\",\n                    \"hora\": \"14:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 1,\n                            \"nombre\": \"Juan Morales\",\n                            \"cedula\": \"0102030405\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 25,\n                    \"fecha\": \"2026-07-17T00:00:00\",\n                    \"hora\": \"08:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 21,\n                            \"nombre\": \"Roberto Jiménez\",\n                            \"cedula\": \"0708091011\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 26,\n                    \"fecha\": \"2026-07-17T00:00:00\",\n                    \"hora\": \"09:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 22,\n                            \"nombre\": \"Carmen Ortega\",\n                            \"cedula\": \"0809101112\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 38,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"15:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 23,\n                            \"nombre\": \"Diego Salazar\",\n                            \"cedula\": \"0910111213\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"BA43C259F3811FEC0D4D74EC6431FDE1\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/3\"\n                }\n            ]\n        },\n        {\n            \"_id\": 4,\n            \"nombre\": \"Dra. Sofía Vélez\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 8,\n                    \"fecha\": \"2026-06-23T00:00:00\",\n                    \"hora\": \"15:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 2,\n                            \"nombre\": \"María López\",\n                            \"cedula\": \"0203040506\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 9,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"16:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"paciente\": [\n                        {\n                            \"idPaciente\": 3,\n                            \"nombre\": \"Pedro Sánchez\",\n                            \"cedula\": \"0304050607\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"BCCD597EBD3B4B33FE8E718B21264871\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/4\"\n                }\n            ]\n        },\n        {\n            \"_id\": 27,\n            \"nombre\": \"Dr. Prueba Postman\",\n            \"turnos\": [],\n            \"_metadata\": {\n                \"etag\": \"C15F7DE9DF8A559009A36C08C193A570\",\n                \"asof\": \"00000006B7564F13\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27\"\n                }\n            ]\n        }\n    ],\n    \"hasMore\": false,\n    \"limit\": 25,\n    \"offset\": 0,\n    \"count\": 9,\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/medicos-turnos/\"\n        },\n        {\n            \"rel\": \"first\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": [
+            {
+              "name": "2. GET - Buscar por ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/medicos-turnos/27",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "medicos-turnos",
+                    "27"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 19:55:38 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"C15F7DE9DF8A559009A36C08C193A570\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 27,\n    \"nombre\": \"Dr. Prueba Postman\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"C15F7DE9DF8A559009A36C08C193A570\",\n        \"asof\": \"00000006B75A1311\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/medicos-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Prueba Postman\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created)."
+          },
+          "response": [
+            {
+              "name": "3. POST - Crear registro",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Dr. Prueba Postman\",\n  \"turnos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/medicos-turnos/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "medicos-turnos",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 19:39:20 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"C15F7DE9DF8A559009A36C08C193A570\""
+                },
+                {
+                  "key": "Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 27,\n    \"nombre\": \"Dr. Prueba Postman\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"C15F7DE9DF8A559009A36C08C193A570\",\n        \"asof\": \"00000006B7561926\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/medicos-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Prueba Postman (actualizado)\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views)."
+          },
+          "response": [
+            {
+              "name": "4. PUT - Actualizar por ID",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "If-Match",
+                    "value": "\"C15F7DE9DF8A559009A36C08C193A570\"",
+                    "type": "text"
+                  },
+                  {
+                    "key": "Content-Type",
+                    "value": "application/json",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": 27,\n    \"nombre\": \"Dr. Prueba Postman (actualizado)\",\n    \"turnos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/medicos-turnos/27",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "medicos-turnos",
+                    "27"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:01:47 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"B68A9B6FDF420A4CA5F26C0E5974FA37\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 27,\n    \"nombre\": \"Dr. Prueba Postman (actualizado)\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"B68A9B6FDF420A4CA5F26C0E5974FA37\",\n        \"asof\": \"00000006B75B94E8\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/27\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/medicos-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/medicos-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": [
+            {
+              "name": "5. DELETE - Eliminar por ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "etag",
+                    "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/medicos-turnos/27",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "medicos-turnos",
+                    "27"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:04:09 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"rowsDeleted\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Pacientes (paciente_turnos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Pacientes (paciente_turnos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": [
+            {
+              "name": "1. GET - Listar todos",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pacientes-turnos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pacientes-turnos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:36:06 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"xx7md5jAgnJdpUQswbqUXENMTyjNjSZkINhO3SLGrDmjwR9IsM4H/VXE8UidoBvu+OM4TT35neWJyPQ8aU4+zQ==\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"items\": [\n        {\n            \"_id\": 41,\n            \"nombre\": \"Paciente de Prueba\",\n            \"cedula\": \"9999999999\",\n            \"turnos\": [],\n            \"_metadata\": {\n                \"etag\": \"B0AB862C2D49FD777D43DED249DFC582\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41\"\n                }\n            ]\n        },\n        {\n            \"_id\": 21,\n            \"nombre\": \"Roberto Jiménez\",\n            \"cedula\": \"0708091011\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 25,\n                    \"fecha\": \"2026-07-17T00:00:00\",\n                    \"hora\": \"08:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 3,\n                            \"nombre\": \"Dr. Luis Ramírez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 37,\n                    \"fecha\": \"2026-07-18T00:00:00\",\n                    \"hora\": \"13:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 2,\n                            \"nombre\": \"Dra. Ana Torres\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"0DFA489D635A29A866F85CB7560C86D9\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/21\"\n                }\n            ]\n        },\n        {\n            \"_id\": 22,\n            \"nombre\": \"Carmen Ortega\",\n            \"cedula\": \"0809101112\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 26,\n                    \"fecha\": \"2026-07-17T00:00:00\",\n                    \"hora\": \"09:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 3,\n                            \"nombre\": \"Dr. Luis Ramírez\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"FE32958853FFAB069810F4F925AB9025\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/22\"\n                }\n            ]\n        },\n        {\n            \"_id\": 23,\n            \"nombre\": \"Diego Salazar\",\n            \"cedula\": \"0910111213\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 27,\n                    \"fecha\": \"2026-07-16T00:00:00\",\n                    \"hora\": \"14:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 23,\n                            \"nombre\": \"Dr. Miguel Andrade\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 38,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"15:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 3,\n                            \"nombre\": \"Dr. Luis Ramírez\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"4AC2B2B78BD6012CC9CE3C0D9388604F\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/23\"\n                }\n            ]\n        },\n        {\n            \"_id\": 24,\n            \"nombre\": \"Patricia Núñez\",\n            \"cedula\": \"1011121314\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 28,\n                    \"fecha\": \"2026-07-15T00:00:00\",\n                    \"hora\": \"15:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 23,\n                            \"nombre\": \"Dr. Miguel Andrade\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"E5E3A00AC2BE44E6B8919903065EDCF4\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/24\"\n                }\n            ]\n        },\n        {\n            \"_id\": 25,\n            \"nombre\": \"Fernando Cabrera\",\n            \"cedula\": \"1112131415\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 29,\n                    \"fecha\": \"2026-07-14T00:00:00\",\n                    \"hora\": \"16:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 24,\n                            \"nombre\": \"Dra. Carla Espinoza\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 39,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"16:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 23,\n                            \"nombre\": \"Dr. Miguel Andrade\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"F080073F0233E20A9930DD72AACCBACD\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/25\"\n                }\n            ]\n        },\n        {\n            \"_id\": 26,\n            \"nombre\": \"Gabriela Mora\",\n            \"cedula\": \"1213141516\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 30,\n                    \"fecha\": \"2026-07-13T00:00:00\",\n                    \"hora\": \"08:45\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 24,\n                            \"nombre\": \"Dra. Carla Espinoza\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"087FA401DBE6DAF70B50E45F41F7DF92\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/26\"\n                }\n            ]\n        },\n        {\n            \"_id\": 1,\n            \"nombre\": \"Juan Morales\",\n            \"cedula\": \"0102030405\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 1,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"08:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 7,\n                    \"fecha\": \"2026-06-28T00:00:00\",\n                    \"hora\": \"14:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 3,\n                            \"nombre\": \"Dr. Luis Ramírez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 31,\n                    \"fecha\": \"2026-07-09T00:00:00\",\n                    \"hora\": \"10:15\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 25,\n                            \"nombre\": \"Dr. Jorge Ruiz\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"00F232147C77009C1A91ADAEFE0A7B72\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/1\"\n                }\n            ]\n        },\n        {\n            \"_id\": 2,\n            \"nombre\": \"María López\",\n            \"cedula\": \"0203040506\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 2,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"09:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 8,\n                    \"fecha\": \"2026-06-23T00:00:00\",\n                    \"hora\": \"15:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 4,\n                            \"nombre\": \"Dra. Sofía Vélez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 32,\n                    \"fecha\": \"2026-07-01T00:00:00\",\n                    \"hora\": \"11:00\",\n                    \"estado\": \"CANCELADO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 25,\n                            \"nombre\": \"Dr. Jorge Ruiz\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"AFDC77A472688DC074E61128D162527D\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/2\"\n                }\n            ]\n        },\n        {\n            \"_id\": 3,\n            \"nombre\": \"Pedro Sánchez\",\n            \"cedula\": \"0304050607\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 3,\n                    \"fecha\": \"2026-07-06T00:00:00\",\n                    \"hora\": \"10:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 9,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"16:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 4,\n                            \"nombre\": \"Dra. Sofía Vélez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 33,\n                    \"fecha\": \"2026-06-26T00:00:00\",\n                    \"hora\": \"13:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 26,\n                            \"nombre\": \"Dra. Elena Vaca\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"3E9D1249FBE06A965F68DEC8C75588E4\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/3\"\n                }\n            ]\n        },\n        {\n            \"_id\": 4,\n            \"nombre\": \"Lucía Fernández\",\n            \"cedula\": \"0405060708\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 4,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"11:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 2,\n                            \"nombre\": \"Dra. Ana Torres\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 21,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"08:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 34,\n                    \"fecha\": \"2026-06-21T00:00:00\",\n                    \"hora\": \"14:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 26,\n                            \"nombre\": \"Dra. Elena Vaca\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"74823071FCB6A5E33123C6078C2EFE76\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/4\"\n                }\n            ]\n        },\n        {\n            \"_id\": 5,\n            \"nombre\": \"Andrés Castillo\",\n            \"cedula\": \"0506070809\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 5,\n                    \"fecha\": \"2026-07-05T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 2,\n                            \"nombre\": \"Dra. Ana Torres\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 22,\n                    \"fecha\": \"2026-07-21T00:00:00\",\n                    \"hora\": \"09:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"0905494221630A73ECCF86B523769DAF\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/5\"\n                }\n            ]\n        },\n        {\n            \"_id\": 6,\n            \"nombre\": \"Andrés Castillo\",\n            \"cedula\": \"0506070809\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 6,\n                    \"fecha\": \"2026-07-08T00:00:00\",\n                    \"hora\": \"13:00\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 3,\n                            \"nombre\": \"Dr. Luis Ramírez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 23,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"10:30\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 2,\n                            \"nombre\": \"Dra. Ana Torres\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 35,\n                    \"fecha\": \"2026-07-19T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                },\n                {\n                    \"idTurno\": 36,\n                    \"fecha\": \"2026-07-19T00:00:00\",\n                    \"hora\": \"12:00\",\n                    \"estado\": \"ATENDIDO\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 1,\n                            \"nombre\": \"Dr. Carlos Pérez\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"E5E7A7CC0CA1EA998069345395030EEF\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/6\"\n                }\n            ]\n        },\n        {\n            \"_id\": 7,\n            \"nombre\": \"Valeria Cordero\",\n            \"cedula\": \"0607080910\",\n            \"turnos\": [\n                {\n                    \"idTurno\": 24,\n                    \"fecha\": \"2026-07-20T00:00:00\",\n                    \"hora\": \"11:30\",\n                    \"estado\": \"PENDIENTE\",\n                    \"medico\": [\n                        {\n                            \"idMedico\": 2,\n                            \"nombre\": \"Dra. Ana Torres\"\n                        }\n                    ]\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"0D3BB88820840288CCFC8504D4F5AD12\",\n                \"asof\": \"00000006B762B1FE\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/7\"\n                }\n            ]\n        }\n    ],\n    \"hasMore\": false,\n    \"limit\": 25,\n    \"offset\": 0,\n    \"count\": 14,\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/pacientes-turnos/\"\n        },\n        {\n            \"rel\": \"first\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": [
+            {
+              "name": "2. GET - Buscar por ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/pacientes-turnos/41",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pacientes-turnos",
+                    "41"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:36:57 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"B0AB862C2D49FD777D43DED249DFC582\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 41,\n    \"nombre\": \"Paciente de Prueba\",\n    \"cedula\": \"9999999999\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"B0AB862C2D49FD777D43DED249DFC582\",\n        \"asof\": \"00000006B762D505\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/pacientes-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Paciente de Prueba\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created)."
+          },
+          "response": [
+            {
+              "name": "3. POST - Crear registro",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Paciente de Prueba\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pacientes-turnos/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pacientes-turnos",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:35:02 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"B0AB862C2D49FD777D43DED249DFC582\""
+                },
+                {
+                  "key": "Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 41,\n    \"nombre\": \"Paciente de Prueba\",\n    \"cedula\": \"9999999999\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"B0AB862C2D49FD777D43DED249DFC582\",\n        \"asof\": \"00000006B7627321\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/pacientes-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Paciente de Prueba (actualizado)\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views)."
+          },
+          "response": [
+            {
+              "name": "4. PUT - Actualizar por ID",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "etag",
+                    "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": 41,\n  \"nombre\": \"Paciente de Prueba (actualizado)\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/pacientes-turnos/41",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pacientes-turnos",
+                    "41"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:37:11 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"7DBFF742E98C3AD6595BE30BADD3DD2D\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 41,\n    \"nombre\": \"Paciente de Prueba (actualizado)\",\n    \"cedula\": \"9999999999\",\n    \"turnos\": [],\n    \"_metadata\": {\n        \"etag\": \"7DBFF742E98C3AD6595BE30BADD3DD2D\",\n        \"asof\": \"00000006B762E052\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/41\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/pacientes-turnos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/pacientes-turnos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": [
+            {
+              "name": "5. DELETE - Eliminar por ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "etag",
+                    "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/pacientes-turnos/41",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "pacientes-turnos",
+                    "41"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:40:30 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"rowsDeleted\": 1\n}"
+            }
+          ]
+        }
+      ]
+    },
+    {
+      "name": "Especialidades (especialidad_medicos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Especialidades (especialidad_medicos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": [
+            {
+              "name": "1. GET - Listar todos",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/especialidades-medicos",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "especialidades-medicos"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:44:37 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"Uxj2eOITkN2HGndXsvuF9SBUfplAs1nvis9PznpbLg2WOvQ5UrZEI1YWOgDbdS8IasOBpqBCAIXxsl1gknhsIQ==\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"items\": [\n        {\n            \"_id\": 21,\n            \"nombre\": \"Neurología\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 23,\n                    \"nombre\": \"Dr. Miguel Andrade\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"B88E7BD1FACFA7FC9126F39DEE8E34B9\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/21\"\n                }\n            ]\n        },\n        {\n            \"_id\": 22,\n            \"nombre\": \"Ginecología\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 24,\n                    \"nombre\": \"Dra. Carla Espinoza\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"2FDCE5DBDD05833638FC4D2FA59B40EF\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/22\"\n                }\n            ]\n        },\n        {\n            \"_id\": 23,\n            \"nombre\": \"Traumatología\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 25,\n                    \"nombre\": \"Dr. Jorge Ruiz\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"C9C757C9E7CF130F8BC9F25700139265\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/23\"\n                }\n            ]\n        },\n        {\n            \"_id\": 1,\n            \"nombre\": \"Medicina General\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 1,\n                    \"nombre\": \"Dr. Carlos Pérez\"\n                },\n                {\n                    \"idMedico\": 26,\n                    \"nombre\": \"Dra. Elena Vaca\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"FD21DDC22A2415EF4E9AB76C4BA6FAED\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/1\"\n                }\n            ]\n        },\n        {\n            \"_id\": 2,\n            \"nombre\": \"Pediatría\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 2,\n                    \"nombre\": \"Dra. Ana Torres\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"E1C758D5E7BB025E6E4C595AB20E3E54\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/2\"\n                }\n            ]\n        },\n        {\n            \"_id\": 3,\n            \"nombre\": \"Cardiología\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 3,\n                    \"nombre\": \"Dr. Luis Ramírez\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"15BB8050FD19970709A63CDE569CB09E\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/3\"\n                }\n            ]\n        },\n        {\n            \"_id\": 4,\n            \"nombre\": \"Dermatología\",\n            \"medicos\": [\n                {\n                    \"idMedico\": 4,\n                    \"nombre\": \"Dra. Sofía Vélez\"\n                }\n            ],\n            \"_metadata\": {\n                \"etag\": \"228DEF0FFE571CCA82E9EACF80666CC8\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/4\"\n                }\n            ]\n        },\n        {\n            \"_id\": 41,\n            \"nombre\": \"Especialidad de Prueba\",\n            \"medicos\": [],\n            \"_metadata\": {\n                \"etag\": \"E260C7BE6391FBE5F5763660FCFDC3C7\",\n                \"asof\": \"00000006B7645B34\"\n            },\n            \"links\": [\n                {\n                    \"rel\": \"self\",\n                    \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41\"\n                }\n            ]\n        }\n    ],\n    \"hasMore\": false,\n    \"limit\": 25,\n    \"offset\": 0,\n    \"count\": 8,\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/especialidades-medicos/\"\n        },\n        {\n            \"rel\": \"first\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": [
+            {
+              "name": "2. GET - Buscar por ID",
+              "originalRequest": {
+                "method": "GET",
+                "header": [],
+                "url": {
+                  "raw": "{{baseUrl}}/especialidades-medicos/22",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "especialidades-medicos",
+                    "22"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:43:13 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"2FDCE5DBDD05833638FC4D2FA59B40EF\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 22,\n    \"nombre\": \"Ginecología\",\n    \"medicos\": [\n        {\n            \"idMedico\": 24,\n            \"nombre\": \"Dra. Carla Espinoza\"\n        }\n    ],\n    \"_metadata\": {\n        \"etag\": \"2FDCE5DBDD05833638FC4D2FA59B40EF\",\n        \"asof\": \"00000006B7642011\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/22\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/especialidades-medicos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Especialidad de Prueba\",\n  \"medicos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created)."
+          },
+          "response": [
+            {
+              "name": "3. POST - Crear registro",
+              "originalRequest": {
+                "method": "POST",
+                "header": [],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"nombre\": \"Especialidad de Prueba\",\n  \"medicos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/especialidades-medicos/",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "especialidades-medicos",
+                    ""
+                  ]
+                }
+              },
+              "status": "Created",
+              "code": 201,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:44:00 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"E260C7BE6391FBE5F5763660FCFDC3C7\""
+                },
+                {
+                  "key": "Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 41,\n    \"nombre\": \"Especialidad de Prueba\",\n    \"medicos\": [],\n    \"_metadata\": {\n        \"etag\": \"E260C7BE6391FBE5F5763660FCFDC3C7\",\n        \"asof\": \"00000006B7643FD9\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/especialidades-medicos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Especialidad de Prueba (actualizada)\",\n  \"medicos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            },
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views)."
+          },
+          "response": [
+            {
+              "name": "4. PUT - Actualizar por ID",
+              "originalRequest": {
+                "method": "PUT",
+                "header": [
+                  {
+                    "key": "etag",
+                    "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                    "type": "text"
+                  }
+                ],
+                "body": {
+                  "mode": "raw",
+                  "raw": "{\n  \"_id\": 41,\n  \"nombre\": \"Especialidad de Prueba (actualizada)\",\n  \"medicos\": []\n}",
+                  "options": {
+                    "raw": {
+                      "language": "json"
+                    }
+                  }
+                },
+                "url": {
+                  "raw": "{{baseUrl}}/especialidades-medicos/41",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "especialidades-medicos",
+                    "41"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:45:10 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Content-Location",
+                  "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41"
+                },
+                {
+                  "key": "ETag",
+                  "value": "\"EA75959E94C996F425537F32EEFFEA7D\""
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"_id\": 41,\n    \"nombre\": \"Especialidad de Prueba (actualizada)\",\n    \"medicos\": [],\n    \"_metadata\": {\n        \"etag\": \"EA75959E94C996F425537F32EEFFEA7D\",\n        \"asof\": \"00000006B7647082\"\n    },\n    \"links\": [\n        {\n            \"rel\": \"self\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/41\"\n        },\n        {\n            \"rel\": \"describedby\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/metadata-catalog/especialidades-medicos/item\"\n        },\n        {\n            \"rel\": \"collection\",\n            \"href\": \"https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/especialidades-medicos/\"\n        }\n    ]\n}"
+            }
+          ]
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": [
+            {
+              "name": "5. DELETE - Eliminar por ID",
+              "originalRequest": {
+                "method": "DELETE",
+                "header": [
+                  {
+                    "key": "etag",
+                    "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                    "type": "text"
+                  }
+                ],
+                "url": {
+                  "raw": "{{baseUrl}}/especialidades-medicos/41",
+                  "host": [
+                    "{{baseUrl}}"
+                  ],
+                  "path": [
+                    "especialidades-medicos",
+                    "41"
+                  ]
+                }
+              },
+              "status": "OK",
+              "code": 200,
+              "_postman_previewlanguage": null,
+              "header": [
+                {
+                  "key": "Date",
+                  "value": "Wed, 22 Jul 2026 20:45:59 GMT"
+                },
+                {
+                  "key": "Content-Type",
+                  "value": "application/json"
+                },
+                {
+                  "key": "Transfer-Encoding",
+                  "value": "chunked"
+                },
+                {
+                  "key": "Connection",
+                  "value": "keep-alive"
+                },
+                {
+                  "key": "Strict-Transport-Security",
+                  "value": "max-age=31536000;includeSubDomains"
+                },
+                {
+                  "key": "X-Content-Type-Options",
+                  "value": "nosniff"
+                }
+              ],
+              "cookie": [],
+              "body": "{\n    \"rowsDeleted\": 1\n}"
+            }
+          ]
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos"
+    }
+  ]
+}

@@ -1,0 +1,445 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Panel de Turnos Médicos</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Spectral:ital,wght@0,400;0,500;0,600;1,400&family=IBM+Plex+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg:#eef3f1; --surface:#fff; --ink:#10312b; --ink-soft:#4d615c;
+    --accent:#3f7d6b; --accent-dark:#2b5b4d;
+    --pend:#c97b2e; --pend-bg:#fbf0e2;
+    --ok:#2f8f6f; --ok-bg:#e7f4ee;
+    --bad:#a6473a; --bad-bg:#f8e9e7;
+    --line:#dbe4e0; --shadow:0 8px 24px -12px rgba(16,49,43,.18); --radius:14px;
+  }
+  *{ box-sizing:border-box; }
+  html,body{ margin:0; padding:0; }
+  body{
+    background:radial-gradient(1200px 400px at 100% -10%, rgba(63,125,107,.10), transparent 60%), var(--bg);
+    color:var(--ink); font-family:'IBM Plex Sans',sans-serif; min-height:100vh; padding:40px 24px 80px;
+  }
+  .wrap{ max-width:1180px; margin:0 auto; }
+
+  header{ display:flex; justify-content:space-between; align-items:flex-end; flex-wrap:wrap; gap:20px; margin-bottom:26px; padding-bottom:26px; border-bottom:1px solid var(--line); }
+  .eyebrow{ font-family:'IBM Plex Mono',monospace; font-size:12px; letter-spacing:.12em; text-transform:uppercase; color:var(--accent-dark); margin:0 0 8px; }
+  h1{ font-family:'Spectral',serif; font-weight:600; font-size:40px; margin:0; letter-spacing:-.01em; }
+  h1 em{ font-style:italic; font-weight:400; color:var(--accent); }
+  .subtitle{ color:var(--ink-soft); margin-top:6px; font-size:15px; max-width:46ch; }
+  .conn{ display:flex; flex-direction:column; gap:8px; align-items:flex-end; }
+  .status-line{ font-size:12px; font-family:'IBM Plex Mono',monospace; color:var(--ink-soft); }
+  .status-line.err{ color:var(--bad); } .status-line.ok{ color:var(--ok); }
+  .reload-btn{ font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:13px; background:var(--ink); color:#fff; border:none; padding:10px 16px; border-radius:10px; cursor:pointer; transition:background .15s; }
+  .reload-btn:hover{ background:var(--accent-dark); }
+
+  .tabs{ display:flex; gap:4px; margin-bottom:28px; background:var(--surface); padding:6px; border-radius:12px; border:1px solid var(--line); box-shadow:var(--shadow); width:fit-content; flex-wrap:wrap; }
+  .tab{ font-family:'IBM Plex Sans',sans-serif; font-size:14px; font-weight:600; padding:10px 22px; border-radius:8px; border:none; background:transparent; color:var(--ink-soft); cursor:pointer; transition:all .15s; display:flex; align-items:center; gap:8px; }
+  .tab:hover{ color:var(--ink); }
+  .tab.active{ background:var(--accent-dark); color:#fff; }
+  .tab.ai.active{ background:linear-gradient(120deg, #3f7d6b, #2b5b4d); }
+  .tab .dot{ width:7px; height:7px; border-radius:50%; background:currentColor; opacity:.6; }
+
+  .view{ display:none; }
+  .view.active{ display:block; animation:fade .25s ease; }
+  @keyframes fade{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
+
+  .overview{ display:grid; grid-template-columns:repeat(3,1fr); gap:16px; margin-bottom:32px; }
+  .ov-card{ background:var(--surface); border-radius:var(--radius); padding:20px 22px; box-shadow:var(--shadow); border:1px solid var(--line); }
+  .ov-label{ font-size:12px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; font-family:'IBM Plex Mono',monospace; }
+  .ov-value{ font-family:'Spectral',serif; font-size:38px; font-weight:600; margin-top:6px; }
+
+  .section-title{ font-family:'Spectral',serif; font-size:22px; font-weight:600; margin:0 0 16px; display:flex; align-items:baseline; gap:10px; }
+  .section-title .count{ font-size:13px; color:var(--ink-soft); font-family:'IBM Plex Mono',monospace; font-weight:400; }
+
+  .card-grid{ display:grid; grid-template-columns:repeat(auto-fill,minmax(300px,1fr)); gap:18px; margin-bottom:40px; }
+  .entity-card{ background:var(--surface); border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow); padding:20px 22px 18px; cursor:pointer; transition:transform .15s, border-color .15s; }
+  .entity-card:hover{ transform:translateY(-3px); border-color:var(--accent); }
+  .entity-card.active{ border-color:var(--accent); box-shadow:0 0 0 2px var(--accent) inset, var(--shadow); }
+  .card-top{ display:flex; justify-content:space-between; align-items:flex-start; gap:10px; }
+  .card-name{ font-family:'Spectral',serif; font-weight:600; font-size:18px; margin:0; }
+  .card-id{ font-family:'IBM Plex Mono',monospace; font-size:11px; color:var(--ink-soft); }
+  .card-sub{ font-size:13px; color:var(--ink-soft); margin-top:2px; }
+  .card-counts{ display:flex; gap:14px; margin-top:14px; }
+  .dc-num{ font-family:'IBM Plex Mono',monospace; font-size:20px; font-weight:600; color:var(--accent-dark); }
+  .dc-label{ font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.06em; }
+
+  .ekg-wrap{ margin-top:16px; }
+  .ekg-label{ font-size:10px; color:var(--ink-soft); text-transform:uppercase; letter-spacing:.08em; margin-bottom:4px; font-family:'IBM Plex Mono',monospace; }
+  .ekg-svg{ width:100%; height:44px; display:block; }
+  .ekg-line{ fill:none; stroke:var(--accent); stroke-width:2; stroke-linejoin:round; stroke-linecap:round; }
+  .ekg-dot{ fill:var(--accent-dark); }
+
+  .chip-row{ display:flex; flex-wrap:wrap; gap:6px; margin-top:14px; }
+  .chip{ font-size:12px; background:var(--ok-bg); color:var(--accent-dark); padding:5px 10px; border-radius:100px; font-weight:500; }
+
+  .detail-panel{ background:var(--surface); border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow); overflow:hidden; }
+  .detail-head{ padding:20px 24px; border-bottom:1px solid var(--line); display:flex; justify-content:space-between; align-items:center; flex-wrap:wrap; gap:10px; }
+  .detail-head h2{ font-family:'Spectral',serif; font-size:20px; margin:0; font-weight:600; }
+  .filter-row{ display:flex; gap:6px; }
+  .filter-btn{ font-family:'IBM Plex Sans',sans-serif; font-size:12px; padding:7px 12px; border-radius:8px; border:1px solid var(--line); background:transparent; color:var(--ink-soft); cursor:pointer; }
+  .filter-btn.active{ background:var(--ink); color:#fff; border-color:var(--ink); }
+
+  table{ width:100%; border-collapse:collapse; }
+  thead th{ text-align:left; font-size:11px; text-transform:uppercase; letter-spacing:.06em; color:var(--ink-soft); font-weight:600; padding:12px 24px; border-bottom:1px solid var(--line); font-family:'IBM Plex Mono',monospace; }
+  tbody td{ padding:14px 24px; border-bottom:1px solid var(--line); font-size:14px; }
+  tbody tr:last-child td{ border-bottom:none; }
+  tbody tr:hover{ background:#f7faf9; }
+  .badge{ display:inline-block; font-size:11px; font-weight:600; padding:4px 10px; border-radius:100px; text-transform:uppercase; letter-spacing:.03em; }
+  .badge.PENDIENTE{ background:var(--pend-bg); color:var(--pend); }
+  .badge.ATENDIDO{ background:var(--ok-bg); color:var(--ok); }
+  .badge.CANCELADO{ background:var(--bad-bg); color:var(--bad); }
+  .mono{ font-family:'IBM Plex Mono',monospace; font-size:13px; color:var(--ink-soft); }
+
+  .empty-state{ padding:60px 24px; text-align:center; color:var(--ink-soft); }
+  .empty-state .big{ font-family:'Spectral',serif; font-size:20px; color:var(--ink); margin-bottom:6px; }
+
+  /* ====== Asistente IA ====== */
+  .ai-hero{ background:var(--surface); border-radius:var(--radius); border:1px solid var(--line); box-shadow:var(--shadow); padding:28px; margin-bottom:22px; }
+  .ai-hero h2{ font-family:'Spectral',serif; font-size:24px; margin:0 0 6px; font-weight:600; }
+  .ai-hero p{ color:var(--ink-soft); margin:0 0 20px; font-size:14px; max-width:60ch; }
+  .ai-inputrow{ display:flex; gap:10px; }
+  .ai-input{ flex:1; font-family:'IBM Plex Sans',sans-serif; font-size:15px; padding:14px 16px; border-radius:12px; border:1px solid var(--line); background:#f7faf9; color:var(--ink); resize:none; min-height:52px; }
+  .ai-input:focus{ outline:none; border-color:var(--accent); background:#fff; }
+  .ai-send{ font-family:'IBM Plex Sans',sans-serif; font-weight:600; font-size:15px; background:var(--accent-dark); color:#fff; border:none; padding:0 26px; border-radius:12px; cursor:pointer; transition:background .15s; white-space:nowrap; }
+  .ai-send:hover{ background:var(--ink); }
+  .ai-send:disabled{ opacity:.5; cursor:not-allowed; }
+
+  .ai-suggestions{ display:flex; flex-wrap:wrap; gap:8px; margin-top:16px; }
+  .ai-sug{ font-size:13px; background:transparent; border:1px dashed var(--line); color:var(--ink-soft); padding:8px 14px; border-radius:100px; cursor:pointer; transition:all .15s; }
+  .ai-sug:hover{ border-color:var(--accent); color:var(--accent-dark); border-style:solid; }
+
+  .ai-conversation{ display:flex; flex-direction:column; gap:16px; }
+  .ai-msg{ display:flex; gap:12px; align-items:flex-start; }
+  .ai-msg.user{ flex-direction:row-reverse; }
+  .ai-avatar{ width:34px; height:34px; border-radius:9px; flex-shrink:0; display:flex; align-items:center; justify-content:center; font-family:'IBM Plex Mono',monospace; font-size:12px; font-weight:600; }
+  .ai-avatar.bot{ background:var(--accent-dark); color:#fff; }
+  .ai-avatar.you{ background:var(--ink); color:#fff; }
+  .ai-bubble{ background:var(--surface); border:1px solid var(--line); border-radius:14px; padding:14px 18px; box-shadow:var(--shadow); max-width:75%; font-size:14px; line-height:1.55; }
+  .ai-msg.user .ai-bubble{ background:var(--accent-dark); color:#fff; border-color:var(--accent-dark); }
+  .ai-bubble .prompt-label{ font-family:'IBM Plex Mono',monospace; font-size:10px; text-transform:uppercase; letter-spacing:.08em; opacity:.6; margin-bottom:4px; }
+  .ai-typing{ display:inline-flex; gap:4px; }
+  .ai-typing span{ width:7px; height:7px; border-radius:50%; background:var(--accent); animation:blink 1.2s infinite; }
+  .ai-typing span:nth-child(2){ animation-delay:.2s; } .ai-typing span:nth-child(3){ animation-delay:.4s; }
+  @keyframes blink{ 0%,60%,100%{ opacity:.3; } 30%{ opacity:1; } }
+
+  @media (max-width:720px){
+    header{ align-items:flex-start; } .conn{ align-items:flex-start; width:100%; }
+    .overview{ grid-template-columns:1fr; } .tabs{ width:100%; } .tab{ flex:1; justify-content:center; }
+    .ai-inputrow{ flex-direction:column; } .ai-bubble{ max-width:100%; }
+  }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div>
+      <p class="eyebrow">Diseño y Gestión de BDD · Reto ABR</p>
+      <h1>Turnos <em>médicos</em></h1>
+      <p class="subtitle">Consulta de médicos, pacientes y especialidades, con asistente de lenguaje natural sobre la base de datos.</p>
+    </div>
+    <div class="conn">
+      <button class="reload-btn" onclick="loadAll()">↻ Actualizar datos</button>
+      <span id="statusLine" class="status-line">cargando…</span>
+    </div>
+  </header>
+
+  <div class="tabs">
+    <button class="tab active" data-view="medicos"><span class="dot"></span>Médicos</button>
+    <button class="tab" data-view="pacientes"><span class="dot"></span>Pacientes</button>
+    <button class="tab" data-view="especialidades"><span class="dot"></span>Especialidades</button>
+    <button class="tab ai" data-view="ia"><span class="dot"></span>Asistente IA</button>
+  </div>
+
+  <!-- ============ VISTA MEDICOS ============ -->
+  <section class="view active" id="view-medicos">
+    <div class="overview">
+      <div class="ov-card"><div class="ov-label">Pacientes hoy</div><div class="ov-value" id="ovDia">–</div></div>
+      <div class="ov-card"><div class="ov-label">Pacientes esta semana</div><div class="ov-value" id="ovSemana">–</div></div>
+      <div class="ov-card"><div class="ov-label">Pacientes este mes</div><div class="ov-value" id="ovMes">–</div></div>
+    </div>
+    <h2 class="section-title">Médicos <span class="count" id="medicoCount"></span></h2>
+    <div class="card-grid" id="medicoGrid"></div>
+    <div class="detail-panel">
+      <div class="detail-head">
+        <h2 id="medicoTitle">Selecciona un médico</h2>
+        <div class="filter-row" id="medicoFilter">
+          <button class="filter-btn active" data-range="mes">Mes</button>
+          <button class="filter-btn" data-range="semana">Semana</button>
+          <button class="filter-btn" data-range="dia">Hoy</button>
+          <button class="filter-btn" data-range="todos">Todos</button>
+        </div>
+      </div>
+      <div id="medicoDetail"><div class="empty-state"><div class="big">Sin médico seleccionado</div><div>Elige una tarjeta para ver sus turnos.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============ VISTA PACIENTES ============ -->
+  <section class="view" id="view-pacientes">
+    <h2 class="section-title">Pacientes <span class="count" id="pacienteCount"></span></h2>
+    <div class="card-grid" id="pacienteGrid"></div>
+    <div class="detail-panel">
+      <div class="detail-head"><h2 id="pacienteTitle">Selecciona un paciente</h2></div>
+      <div id="pacienteDetail"><div class="empty-state"><div class="big">Sin paciente seleccionado</div><div>Elige una tarjeta para ver su historial de turnos.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============ VISTA ESPECIALIDADES ============ -->
+  <section class="view" id="view-especialidades">
+    <h2 class="section-title">Especialidades <span class="count" id="especialidadCount"></span></h2>
+    <div class="card-grid" id="especialidadGrid"></div>
+    <div class="detail-panel">
+      <div class="detail-head"><h2 id="especialidadTitle">Selecciona una especialidad</h2></div>
+      <div id="especialidadDetail"><div class="empty-state"><div class="big">Sin especialidad seleccionada</div><div>Elige una tarjeta para ver sus médicos.</div></div></div>
+    </div>
+  </section>
+
+  <!-- ============ VISTA ASISTENTE IA ============ -->
+  <section class="view" id="view-ia">
+    <div class="ai-hero">
+      <h2>Pregúntale a la base de datos</h2>
+      <p>Escribe tu consulta en lenguaje natural. El asistente la traduce a SQL y responde con los datos reales de turnos, médicos, pacientes y especialidades.</p>
+      <div class="ai-inputrow">
+        <textarea id="aiInput" class="ai-input" placeholder="Ej: ¿cuántos pacientes atendió cada médico este mes?" rows="1"></textarea>
+        <button id="aiSend" class="ai-send" onclick="askAI()">Consultar</button>
+      </div>
+      <div class="ai-suggestions" id="aiSuggestions">
+        <button class="ai-sug" onclick="useSuggestion(this)">¿Cuántos médicos hay registrados?</button>
+        <button class="ai-sug" onclick="useSuggestion(this)">¿Qué médico tiene más turnos cancelados?</button>
+        <button class="ai-sug" onclick="useSuggestion(this)">¿Cuántos turnos hay pendientes hoy?</button>
+        <button class="ai-sug" onclick="useSuggestion(this)">¿Cuáles son las especialidades con más médicos?</button>
+      </div>
+    </div>
+    <div class="ai-conversation" id="aiConversation"></div>
+  </section>
+
+</div>
+
+<script>
+// ====== ENDPOINTS ======
+const BASE = 'https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos/';
+const EP = {
+  medicos: BASE + 'medicos-turnos/',
+  pacientes: BASE + 'pacientes-turnos/',
+  especialidades: BASE + 'especialidades-medicos/',
+  ia: BASE + 'ai/consulta'
+};
+
+let medicos = [], pacientes = [], especialidades = [];
+let activeMedico = null, activePaciente = null, activeEspecialidad = null;
+let medicoRange = 'mes';
+
+function isoWeek(d){
+  const date = new Date(Date.UTC(d.getFullYear(), d.getMonth(), d.getDate()));
+  const day = (date.getUTCDay()+6)%7;
+  date.setUTCDate(date.getUTCDate()-day+3);
+  const firstThu = new Date(Date.UTC(date.getUTCFullYear(),0,4));
+  const week = 1 + Math.round(((date-firstThu)/86400000 - 3 + ((firstThu.getUTCDay()+6)%7))/7);
+  return date.getUTCFullYear()+'-W'+week;
+}
+function sameDay(a,b){ return a.toDateString()===b.toDateString(); }
+function classify(fechaStr){
+  const f=new Date(fechaStr), hoy=new Date();
+  return { inDay: sameDay(f,hoy), inWeek: isoWeek(f)===isoWeek(hoy), inMonth: f.getFullYear()===hoy.getFullYear() && f.getMonth()===hoy.getMonth() };
+}
+function fmtFecha(s){ return new Date(s).toLocaleDateString('es-EC',{day:'2-digit',month:'short',year:'numeric'}); }
+function firstOf(x){ return Array.isArray(x) ? x[0] : x; }
+function escapeHtml(s){ return String(s).replace(/[&<>"']/g, c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c])); }
+
+async function loadAll(){
+  const status = document.getElementById('statusLine');
+  status.textContent = 'consultando los endpoints…'; status.className='status-line';
+  try{
+    const [m,p,e] = await Promise.all([
+      fetch(EP.medicos).then(r=>{ if(!r.ok) throw new Error('médicos HTTP '+r.status); return r.json(); }),
+      fetch(EP.pacientes).then(r=>{ if(!r.ok) throw new Error('pacientes HTTP '+r.status); return r.json(); }),
+      fetch(EP.especialidades).then(r=>{ if(!r.ok) throw new Error('especialidades HTTP '+r.status); return r.json(); })
+    ]);
+    medicos = m.items||[]; pacientes = p.items||[]; especialidades = e.items||[];
+    status.textContent = `OK · ${medicos.length} médicos · ${pacientes.length} pacientes · ${especialidades.length} especialidades`;
+    status.className='status-line ok';
+    renderMedicos(); renderPacientes(); renderEspecialidades();
+    if(medicos.length) selectMedico(medicos[0]._id);
+    if(pacientes.length) activePaciente=pacientes[0]._id;
+    if(especialidades.length) activeEspecialidad=especialidades[0]._id;
+  }catch(err){
+    status.textContent = 'error: '+err.message; status.className='status-line err';
+  }
+}
+
+function ekg(turnos){
+  const days=[]; for(let i=6;i>=0;i--){ const d=new Date(); d.setDate(d.getDate()-i); days.push(d); }
+  const counts=days.map(d=>(turnos||[]).filter(t=>sameDay(new Date(t.fecha),d)).length);
+  const max=Math.max(1,...counts), w=240,h=34,pad=4, stepX=(w-pad*2)/(counts.length-1);
+  const pts=counts.map((c,i)=>[pad+i*stepX, h-pad-(c/max)*(h-pad*2)]);
+  const path=pts.map((p,i)=>(i===0?'M':'L')+p[0].toFixed(1)+','+p[1].toFixed(1)).join(' ');
+  const dots=pts.map(p=>`<circle class="ekg-dot" cx="${p[0].toFixed(1)}" cy="${p[1].toFixed(1)}" r="2"></circle>`).join('');
+  return `<svg class="ekg-svg" viewBox="0 0 ${w} ${h+10}"><path class="ekg-line" d="${path}"></path>${dots}</svg>`;
+}
+
+// ===== MEDICOS =====
+function countM(m,key){ return (m.turnos||[]).filter(t=>classify(t.fecha)[key]).length; }
+function renderMedicos(){
+  document.getElementById('medicoCount').textContent='('+medicos.length+')';
+  let dia=0,sem=0,mes=0;
+  medicos.forEach(m=>(m.turnos||[]).forEach(t=>{const c=classify(t.fecha); if(c.inDay)dia++; if(c.inWeek)sem++; if(c.inMonth)mes++;}));
+  document.getElementById('ovDia').textContent=dia;
+  document.getElementById('ovSemana').textContent=sem;
+  document.getElementById('ovMes').textContent=mes;
+  document.getElementById('medicoGrid').innerHTML = medicos.map(m=>`
+    <div class="entity-card ${m._id===activeMedico?'active':''}" onclick="selectMedico(${m._id})">
+      <div class="card-top"><div><p class="card-name">${m.nombre}</p><span class="card-id">ID-${String(m._id).padStart(3,'0')}</span></div></div>
+      <div class="card-counts">
+        <div><div class="dc-num">${countM(m,'inDay')}</div><div class="dc-label">Hoy</div></div>
+        <div><div class="dc-num">${countM(m,'inWeek')}</div><div class="dc-label">Semana</div></div>
+        <div><div class="dc-num">${countM(m,'inMonth')}</div><div class="dc-label">Mes</div></div>
+      </div>
+      <div class="ekg-wrap"><div class="ekg-label">Ritmo · últimos 7 días</div>${ekg(m.turnos)}</div>
+    </div>`).join('');
+}
+function selectMedico(id){ activeMedico=id; renderMedicos(); renderMedicoDetail(); }
+function renderMedicoDetail(){
+  const m=medicos.find(x=>x._id===activeMedico);
+  const title=document.getElementById('medicoTitle'), body=document.getElementById('medicoDetail');
+  if(!m){ title.textContent='Selecciona un médico'; return; }
+  title.textContent='Turnos de '+m.nombre;
+  let turnos=(m.turnos||[]).slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+  if(medicoRange!=='todos'){ const k=medicoRange==='dia'?'inDay':medicoRange==='semana'?'inWeek':'inMonth'; turnos=turnos.filter(t=>classify(t.fecha)[k]); }
+  if(!turnos.length){ body.innerHTML='<div class="empty-state"><div class="big">Sin turnos en este rango</div><div>Prueba otro filtro.</div></div>'; return; }
+  body.innerHTML=`<table><thead><tr><th>Fecha</th><th>Hora</th><th>Paciente</th><th>Cédula</th><th>Estado</th></tr></thead><tbody>
+    ${turnos.map(t=>{const p=firstOf(t.paciente); return `<tr><td>${fmtFecha(t.fecha)}</td><td class="mono">${t.hora}</td><td>${p?p.nombre:'—'}</td><td class="mono">${p?p.cedula:'—'}</td><td><span class="badge ${t.estado}">${t.estado}</span></td></tr>`;}).join('')}
+  </tbody></table>`;
+}
+
+// ===== PACIENTES =====
+function renderPacientes(){
+  document.getElementById('pacienteCount').textContent='('+pacientes.length+')';
+  document.getElementById('pacienteGrid').innerHTML = pacientes.map(p=>{
+    const total=(p.turnos||[]).length, atendidos=(p.turnos||[]).filter(t=>t.estado==='ATENDIDO').length;
+    return `<div class="entity-card ${p._id===activePaciente?'active':''}" onclick="selectPaciente(${p._id})">
+      <div class="card-top"><div><p class="card-name">${p.nombre}</p><span class="card-id">CI ${p.cedula||'—'}</span></div></div>
+      <div class="card-counts">
+        <div><div class="dc-num">${total}</div><div class="dc-label">Turnos</div></div>
+        <div><div class="dc-num">${atendidos}</div><div class="dc-label">Atendidos</div></div>
+      </div>
+    </div>`;
+  }).join('');
+}
+function selectPaciente(id){ activePaciente=id; renderPacientes(); renderPacienteDetail(); }
+function renderPacienteDetail(){
+  const p=pacientes.find(x=>x._id===activePaciente);
+  const title=document.getElementById('pacienteTitle'), body=document.getElementById('pacienteDetail');
+  if(!p){ title.textContent='Selecciona un paciente'; return; }
+  title.textContent='Historial de '+p.nombre;
+  let turnos=(p.turnos||[]).slice().sort((a,b)=>new Date(b.fecha)-new Date(a.fecha));
+  if(!turnos.length){ body.innerHTML='<div class="empty-state"><div class="big">Sin turnos registrados</div></div>'; return; }
+  body.innerHTML=`<table><thead><tr><th>Fecha</th><th>Hora</th><th>Médico</th><th>Estado</th></tr></thead><tbody>
+    ${turnos.map(t=>{const m=firstOf(t.medico); return `<tr><td>${fmtFecha(t.fecha)}</td><td class="mono">${t.hora}</td><td>${m?m.nombre:'—'}</td><td><span class="badge ${t.estado}">${t.estado}</span></td></tr>`;}).join('')}
+  </tbody></table>`;
+}
+
+// ===== ESPECIALIDADES =====
+function renderEspecialidades(){
+  document.getElementById('especialidadCount').textContent='('+especialidades.length+')';
+  document.getElementById('especialidadGrid').innerHTML = especialidades.map(e=>{
+    const meds=e.medicos||[];
+    return `<div class="entity-card ${e._id===activeEspecialidad?'active':''}" onclick="selectEspecialidad(${e._id})">
+      <div class="card-top"><div><p class="card-name">${e.nombre}</p><span class="card-id">ID-${String(e._id).padStart(3,'0')}</span></div></div>
+      <div class="card-counts"><div><div class="dc-num">${meds.length}</div><div class="dc-label">Médicos</div></div></div>
+      <div class="chip-row">${meds.slice(0,4).map(m=>`<span class="chip">${m.nombre}</span>`).join('')||'<span class="card-sub">Sin médicos asignados</span>'}${meds.length>4?`<span class="chip">+${meds.length-4}</span>`:''}</div>
+    </div>`;
+  }).join('');
+}
+function selectEspecialidad(id){ activeEspecialidad=id; renderEspecialidades(); renderEspecialidadDetail(); }
+function renderEspecialidadDetail(){
+  const e=especialidades.find(x=>x._id===activeEspecialidad);
+  const title=document.getElementById('especialidadTitle'), body=document.getElementById('especialidadDetail');
+  if(!e){ title.textContent='Selecciona una especialidad'; return; }
+  title.textContent='Médicos en '+e.nombre;
+  const meds=e.medicos||[];
+  if(!meds.length){ body.innerHTML='<div class="empty-state"><div class="big">Sin médicos en esta especialidad</div></div>'; return; }
+  body.innerHTML=`<table><thead><tr><th>ID</th><th>Médico</th></tr></thead><tbody>
+    ${meds.map(m=>`<tr><td class="mono">ID-${String(m.idMedico).padStart(3,'0')}</td><td>${m.nombre}</td></tr>`).join('')}
+  </tbody></table>`;
+}
+
+// ===== ASISTENTE IA =====
+function useSuggestion(btn){
+  document.getElementById('aiInput').value = btn.textContent;
+  askAI();
+}
+function addMessage(who, text, isTyping){
+  const conv = document.getElementById('aiConversation');
+  const wrap = document.createElement('div');
+  wrap.className = 'ai-msg ' + (who==='you'?'user':'bot');
+  const avatar = who==='you' ? '<div class="ai-avatar you">TÚ</div>' : '<div class="ai-avatar bot">IA</div>';
+  const inner = isTyping
+    ? '<div class="ai-typing"><span></span><span></span><span></span></div>'
+    : (who==='you'
+        ? '<div class="prompt-label">Consulta</div>' + escapeHtml(text)
+        : escapeHtml(text));
+  wrap.innerHTML = avatar + '<div class="ai-bubble">' + inner + '</div>';
+  conv.appendChild(wrap);
+  wrap.scrollIntoView({behavior:'smooth', block:'end'});
+  return wrap;
+}
+
+async function askAI(){
+  const input = document.getElementById('aiInput');
+  const btn = document.getElementById('aiSend');
+  const prompt = input.value.trim();
+  if(!prompt) return;
+
+  addMessage('you', prompt, false);
+  input.value = '';
+  btn.disabled = true;
+  const typing = addMessage('bot', '', true);
+
+  try{
+    const res = await fetch(EP.ia, {
+      method: 'POST',
+      headers: { 'Content-Type': 'application/json' },
+      body: JSON.stringify({ prompt: prompt })
+    });
+    if(!res.ok) throw new Error('El servidor respondió con estado ' + res.status);
+    const data = await res.json();
+    const respuesta = data.respuesta || data.resultado || JSON.stringify(data);
+    typing.querySelector('.ai-bubble').innerHTML = escapeHtml(respuesta);
+  }catch(err){
+    typing.querySelector('.ai-bubble').innerHTML =
+      '<span style="color:var(--bad)">No se pudo obtener respuesta: ' + escapeHtml(err.message) +
+      '. Verifica que el endpoint /ai/consulta esté activo.</span>';
+  }finally{
+    btn.disabled = false;
+  }
+}
+
+// enter para enviar (shift+enter = salto de línea)
+document.getElementById('aiInput').addEventListener('keydown', e=>{
+  if(e.key==='Enter' && !e.shiftKey){ e.preventDefault(); askAI(); }
+});
+
+// ===== navegación =====
+document.querySelectorAll('.tab').forEach(tab=>{
+  tab.addEventListener('click',()=>{
+    document.querySelectorAll('.tab').forEach(t=>t.classList.remove('active'));
+    document.querySelectorAll('.view').forEach(v=>v.classList.remove('active'));
+    tab.classList.add('active');
+    document.getElementById('view-'+tab.dataset.view).classList.add('active');
+    if(tab.dataset.view==='pacientes' && activePaciente) renderPacienteDetail();
+    if(tab.dataset.view==='especialidades' && activeEspecialidad) renderEspecialidadDetail();
+    if(tab.dataset.view==='ia') document.getElementById('aiInput').focus();
+  });
+});
+document.getElementById('medicoFilter').addEventListener('click',e=>{
+  const b=e.target.closest('.filter-btn'); if(!b) return;
+  document.querySelectorAll('#medicoFilter .filter-btn').forEach(x=>x.classList.remove('active'));
+  b.classList.add('active'); medicoRange=b.dataset.range; renderMedicoDetail();
+});
+
+loadAll();
+</script>
+</body>
+</html>

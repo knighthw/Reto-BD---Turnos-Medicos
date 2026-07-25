@@ -1,0 +1,400 @@
+{
+  "info": {
+    "name": "Turnos Médicos - Duality Views (CRUD)",
+    "description": "Colección de pruebas CRUD (GET, POST, PUT, DELETE) sobre las 3 JSON Relational Duality Views del proyecto Plataforma de Turnos Médicos, expuestas vía ORDS. Entregable D6/D8 - Diseño y Gestión de BDD.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Médicos (medico_turnos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Médicos (medico_turnos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": []
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": []
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Prueba Postman\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Dr. Prueba Postman (actualizado)\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/medicos-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "medicos-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Pacientes (paciente_turnos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Pacientes (paciente_turnos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": []
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": []
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Paciente de Prueba\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Paciente de Prueba (actualizado)\",\n  \"cedula\": \"9999999999\",\n  \"turnos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/pacientes-turnos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "pacientes-turnos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": []
+        }
+      ]
+    },
+    {
+      "name": "Especialidades (especialidad_medicos_dv)",
+      "item": [
+        {
+          "name": "1. GET - Listar todos",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos"
+              ]
+            },
+            "description": "Devuelve el listado completo de Especialidades (especialidad_medicos_dv) con sus datos anidados (Duality View)."
+          },
+          "response": []
+        },
+        {
+          "name": "2. GET - Buscar por ID",
+          "request": {
+            "method": "GET",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 final por un _id real que exista en tu base. Copia el valor de _metadata.etag de la respuesta: lo necesitas para el PUT y el DELETE."
+          },
+          "response": []
+        },
+        {
+          "name": "3. POST - Crear registro",
+          "request": {
+            "method": "POST",
+            "header": [],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos"
+              ]
+            },
+            "description": "Crea un registro nuevo. Oracle genera el _id automáticamente y lo devuelve en la respuesta (201 Created).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Especialidad de Prueba\",\n  \"medicos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "4. PUT - Actualizar por ID",
+          "request": {
+            "method": "PUT",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a actualizar, y el header 'etag' por el valor obtenido en el GET de ese registro (bloqueo optimista de las Duality Views).",
+            "body": {
+              "mode": "raw",
+              "raw": "{\n  \"nombre\": \"Especialidad de Prueba (actualizada)\",\n  \"medicos\": []\n}",
+              "options": {
+                "raw": {
+                  "language": "json"
+                }
+              }
+            }
+          },
+          "response": []
+        },
+        {
+          "name": "5. DELETE - Eliminar por ID",
+          "request": {
+            "method": "DELETE",
+            "header": [
+              {
+                "key": "etag",
+                "value": "PEGA_AQUI_EL_ETAG_DEL_GET",
+                "type": "text"
+              }
+            ],
+            "url": {
+              "raw": "{{baseUrl}}/especialidades-medicos/1",
+              "host": [
+                "{{baseUrl}}"
+              ],
+              "path": [
+                "especialidades-medicos",
+                "1"
+              ]
+            },
+            "description": "Reemplaza el 1 por el _id real a eliminar, y el header 'etag' por el valor obtenido en el GET de ese registro. Úsalo solo sobre registros de prueba."
+          },
+          "response": []
+        }
+      ]
+    }
+  ],
+  "variable": [
+    {
+      "key": "baseUrl",
+      "value": "https://gd3a9cb2ba93967-clases2026.adb.sa-bogota-1.oraclecloudapps.com/ords/turnos_medicos",
+      "type": "string"
+    }
+  ]
+}
