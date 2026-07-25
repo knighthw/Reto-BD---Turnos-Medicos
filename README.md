@@ -116,9 +116,9 @@ Sobre estas tablas se definen 3 **Duality Views**:
 
 ### 1. Conectarse a la base de datos
 
-No necesitas descargar ningún wallet ni instalar software adicional: la conexión se hace directamente desde el navegador con **Database Actions**.
+No necesita descargar ningún wallet ni instalar software adicional: la conexión se hace directamente desde el navegador con **Database Actions**.
 
-1. Abre el enlace de **Database Actions** que se te compartió.
+1. Abra el enlace de **Database Actions** que se le compartió (en el informe).
 2. Inicia sesión con el usuario `TURNOS_MEDICOS` y la contraseña que recibiste.
 3. En el panel de accesos rápidos, abre la tarjeta **SQL** (bajo *Development*). Ahí es donde vas a pegar y ejecutar los scripts de la carpeta `sql/`.
 
