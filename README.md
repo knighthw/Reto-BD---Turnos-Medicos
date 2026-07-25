@@ -185,16 +185,11 @@ Para GET por ID añade el identificador: `medicos-turnos/1`.
 El asistente de IA usa **Oracle Select AI** (`DBMS_CLOUD_AI`) con el provider **Google Gemini** (`gemini-flash-latest`).
 
 - Requiere una **API key propia** del provider (Gemini u OpenAI). Consíguela en el panel del proveedor.
-- En `sql/04_select_ai_y_endpoint.sql` (y en la Sección 4 del script maestro) reemplaza el placeholder `'TU_API_KEY_DE_GEMINI_AQUI'` por tu key **solo en tu copia local**.
-- 🔐 **La API key NO debe subirse al repositorio.** El `.gitignore` excluye archivos de secretos, pero la responsabilidad final es tuya: verifica antes de cada commit.
-- Según la región/tenancy puede requerirse una **ACL de red** (`DBMS_NETWORK_ACL_ADMIN`) para permitir la salida hacia el provider.
 
-Ejemplos de consultas en lenguaje natural en `sql/ejemplos_select_ai.sql`.
 
 ---
 
 ## 🔐 Seguridad
 
-- **Nunca** subas API keys (Gemini/OpenAI). Si en algún momento usas un wallet de Oracle (`*.sso`, `*.p12`, `tnsnames.ora`, `Wallet_*.zip`) para conectarte por otra vía, tampoco lo subas — ambos ya están excluidos en `.gitignore` como precaución.
-- Las **credenciales de conexión** al esquema no se publican aquí; se comparten por separado.
-- Si alguna key llegara a filtrarse en un commit, **revócala y regenérala** de inmediato en el panel del proveedor.
+- Las **credenciales de conexión** al esquema no se publican aquí; se comparten por separado (El informe).
+
